@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     for(i=0; i<nsmp; i++) {
         int j;
         unsigned long smptime;
-        usleep(udelsmp);
+        // usleep(udelsmp);
         //Prepare data to be inserted
         pthread_mutex_lock(&rbuf->cvar_lock);
         //check if there is place for the new data

@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
             for(j=0;j<ndel;j++)
                dummy++;            
         } else {
-            pthread_cond_wait(&rbuf->cvar,&rbuf->cvar_lock);
+            // pthread_cond_wait(&rbuf->cvar,&rbuf->cvar_lock);
             pthread_mutex_unlock(&rbuf->cvar_lock);
         }
     }
