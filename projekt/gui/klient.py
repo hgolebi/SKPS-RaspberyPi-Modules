@@ -16,6 +16,8 @@ ax = fig.add_subplot(1, 1, 1)
 xs = []
 ys = []
 
+# function that is called every time interval 
+# updates plot with received volatge value and timestamp of its receival
 def animate(i, xs, ys, socket):
 
     xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
@@ -37,15 +39,17 @@ def animate(i, xs, ys, socket):
     plt.ylabel('Voltage (V)')
     plt.xlabel('Timestamp')
 
-
+# receives data sent from RPi
 def receive_data(socket):
     return socket.recv(8).decode("utf-8")
 
 
 def main():
+    # initializes socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
 
+        # plots data on a constantly updated graph
         ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys, s), interval=1)
         plt.show()
 
