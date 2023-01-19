@@ -15,10 +15,11 @@ int main(int argc, char const* argv[])
     connector.init();
     cout<<"i2c connection established"<<endl;
     while(true){
-        int data = connector.readData(2);
-        float result = data * 0.001; 
+        int data = connector.readData(2);   // odczyt wartości z przetwornika
+        float result = data * 0.001;        // konwersja odczytanej wartości na faktyczne napięcie,
+                                            //      więcej informacji w dokumentacji
         cout<<result<<endl;
-        tcp.send_data(result);
+        tcp.send_data(result);              // wysłanie wartości napięcia do klienta
         usleep(300000);
     }
     tcp.close_connection();
